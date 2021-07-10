@@ -41,3 +41,9 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::group(['middleware'=>'role:ADMIN,SUPER_ADMIN'],function(){
+    Route::get('/admin/dashboard',function(){
+        return '<h1>Admin Panel</h1>';
+    });
+});

@@ -45,4 +45,21 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole($role){
+        return $this->roles->where('slug',$role)->count() > 0;
+    }
+
+    public function hasAnyRole($roles){
+        foreach($roles as $role){
+            if($this->hasRole($role)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
