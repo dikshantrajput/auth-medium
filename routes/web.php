@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,4 +47,8 @@ Route::group(['middleware'=>'role:ADMIN,SUPER_ADMIN'],function(){
     Route::get('/admin/dashboard',function(){
         return '<h1>Admin Panel</h1>';
     });
+});
+
+Route::group(['middleware'=>'auth'],function(){
+    Route::post('user/data',[App\Http\Controllers\UserController::class,'getData'])->name('user.data'); 
 });
