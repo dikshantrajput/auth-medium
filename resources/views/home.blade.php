@@ -22,6 +22,9 @@
                 <button class="btn btn-primary" data-id="{{ auth()->id() }}" onclick="fetchData(this)">
                     Fetch My Data
                 </button>
+                <a href="{{ route('age.restricted.page') }}" class="btn btn-danger" >
+                    Age Restricted Page
+                </a>
             </div>
         </div>
     </div>
