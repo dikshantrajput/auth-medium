@@ -48,6 +48,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //accessor
+    public function getNameMobileAttribute(){
+        return $this->name . '-' . $this->mobile;
+    }
+
+    //mutator
+    public function setNameAttribute($value){
+        $this->attributes['name'] =  strtoupper($value);
+    }
+
     public function roles(){
         return $this->belongsToMany(Role::class);
     }

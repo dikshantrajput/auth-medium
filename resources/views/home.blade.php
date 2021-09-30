@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    {{ auth()->user()->name_mobile }}
                 </div>
                 <div class="user__info p-3">
                     <small class="error text-danger mb-2 d-block"></small>
