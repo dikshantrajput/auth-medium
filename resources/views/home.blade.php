@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(Session::has('error-message'))
+    <div class="alert alert-warning">
+        {{ Session::get('error-message') }}
+    </div>
+@endif
+
+@if(Session::has('success-message'))
+    <div class="alert alert-success">
+        {{ Session::get('success-message') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -27,6 +40,18 @@
                 <a href="{{ route('age.restricted.page') }}" class="btn btn-danger" >
                     Age Restricted Page
                 </a>
+                @if(auth()->user()->avatar)
+                    <h5 class="m-3">Uploaded avatar</h5>
+                    <img class="m-3" src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="user avatar" width="100" height="100" />
+                @endif
+                <div class="form-group p-3 my-4">
+                    <h3>Upload Avatar</h3>
+                    <form action="{{ route('user.avatar.upload') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                        <input type="file" name="avatar" accept="image/*">
+                        <input type="submit" class="btn btn-primary">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

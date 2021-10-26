@@ -51,5 +51,6 @@ Route::group(['middleware'=>['auth','role:ADMIN,SUPER_ADMIN']],function(){
 
 Route::group(['middleware'=>'auth'],function(){
     Route::post('user/data',[App\Http\Controllers\UserController::class,'getData'])->name('user.data'); 
+    Route::post('user/avatar/upload',[App\Http\Controllers\UserController::class,'storeAvatar'])->name('user.avatar.upload'); 
     Route::get('user/ageRestrictedPage',[App\Http\Controllers\UserController::class,'ageRestrictedPage'])->name('age.restricted.page')->middleware('age.check'); 
 });
