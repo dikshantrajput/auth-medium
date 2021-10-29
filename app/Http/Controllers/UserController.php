@@ -15,7 +15,7 @@ class UserController extends Controller
         $user_id = $request->id;
         $user = User::find($user_id)->first(['name','email','mobile']);
         // $user = auth()->user();
-        return view('users.data',compact('user'));
+        return view('users.data')->with('user',$user);
     }
 
     public function ageRestrictedPage(){
